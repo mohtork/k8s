@@ -1,0 +1,14 @@
+spec:
+ additionalPolicies:
+   nodes: |
+     [
+       {
+         "Effect": "Allow",
+         "Action": [
+           "sts:AssumeRole"
+         ],
+         "Resource": [
+           "arn:aws:iam::aws_root_id:role/k8s-*"
+         ]
+       }
+     ]
