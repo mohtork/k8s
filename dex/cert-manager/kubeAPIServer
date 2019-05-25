@@ -1,0 +1,7 @@
+kubeAPIServer:
+    anonymousAuth: false
+    authorizationMode: RBAC
+    oidcClientID: dex-k8s-authenticator
+    oidcGroupsClaim: groups
+    oidcIssuerURL: https://dex.k8s.akadeemia.cloud/
+    oidcUsernameClaim: email
