@@ -1,0 +1,13 @@
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: dex-cluster-auth
+  namespace: linuxdirection
+subjects:
+- kind: Group
+  name: "linuxdirection:devops"
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: devops-role
+  apiGroup: rbac.authorization.k8s.io
