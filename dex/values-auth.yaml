@@ -1,0 +1,31 @@
+global:
+  deployEnv: prod
+
+dexK8sAuthenticator:
+  clusters:
+  - name: k8s.akadeemia.cloud
+    short_description: "k8s cluster"
+    description: "Kubernetes cluster"
+    issuer: https://dex.k8s.akadeemia.cloud/ #_replace_me
+    k8s_master_uri: https://api.k8s.akadeemia.cloud #_replace_me
+    client_id: dex-k8s-authenticator
+    client_secret: #_replace_me with the same secret in values-dex.yaml file 
+    redirect_uri: https://login.k8s.akadeemia.cloud/callback/ #_replace_me
+    k8s_ca_pem: |
+      -----BEGIN CERTIFICATE-----
+      _replace_me with certificate
+      you copied from master node
+      -----END CERTIFICATE-----
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx #if you use any other ingress controller , type it here
+    kubernetes.io/tls-acme: "true" #cert-manager annotations
+  path: /
+  hosts:
+    - login.k8s.akadeemia.cloud #_replace_me
+  tls:
+    - secretName: cert-auth-login
+      hosts:
+        - login.k8s.akadeemia.cloud #_replace_me
